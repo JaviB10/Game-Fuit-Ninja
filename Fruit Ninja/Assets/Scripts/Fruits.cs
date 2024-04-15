@@ -18,6 +18,8 @@ public class Fruits : MonoBehaviour
             r.AddExplosionForce(Random.Range(500, 1000), transform.position, 5f);
         }
 
+        Destroy(inst.gameObject, 5);
+
         Destroy(gameObject);
     }
 
@@ -27,6 +29,7 @@ public class Fruits : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CreateCutFruit();
+
         }
     }
 }
