@@ -23,13 +23,16 @@ public class Fruits : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CreateCutFruit();
+        Sword e = collision.GetComponent<Sword>();
 
+        if (!e)
+        {
+            return;
         }
+        
+        CreateCutFruit();
+        
     }
 }
