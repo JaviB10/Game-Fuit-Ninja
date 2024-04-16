@@ -172,3 +172,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabCutFruit: {fileID: 1697982441840281976, guid: bf2976bdcb14e1747bd06825bab54d20,
     type: 3}
+  sound: {fileID: 2840146229564819784, guid: 1982890a0aba88442ac7222623794a78, type: 3}

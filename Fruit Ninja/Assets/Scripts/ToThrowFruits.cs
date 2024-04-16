@@ -12,11 +12,23 @@ public class ToThrowFruits : MonoBehaviour
     public float forceMin = 12;
     public float forceMax = 17;
 
+    public float minDelay = 1.0f; // Retraso inicial en segundos
+
     public Transform[] throwingAreas;
+
+    public AudioSource soundGame;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(StartThrowing());
+        this.soundGame.Play();
+    }
+
+    private IEnumerator StartThrowing()
+    {
+        yield return new WaitForSeconds(minDelay);
+
         StartCoroutine(Thrower());
     }
 
