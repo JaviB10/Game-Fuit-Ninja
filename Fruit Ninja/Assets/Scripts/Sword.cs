@@ -17,6 +17,7 @@ public class Sword : MonoBehaviour
     public AudioSource soundSword;
     private bool isMoving = false;
     private GameManager gameManager;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,7 +27,7 @@ public class Sword : MonoBehaviour
 
     void Update()
     {
-        if (!gameManager.gameOverPanel.activeSelf)
+        if (!gameManager.gameOverPanel.activeSelf && !gameManager.pausePanel.activeSelf)
         {
             // Verificar si el mouse se ha movido desde el último frame
             if (!isMoving && Input.GetAxis("Mouse X") != 0f && Input.GetAxis("Mouse Y") != 0f)

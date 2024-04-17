@@ -7,12 +7,10 @@ public class ToThrowFruits : MonoBehaviour
 {
     public GameObject[] threwFruits;
     public GameObject threwBombs;
-    public float min = 0.3f;
-    public float max = 1.0f;
-    public float forceMin = 12;
-    public float forceMax = 17;
-
-    public float minDelay = 1.0f; // Retraso inicial en segundos
+    public float min = 0.5f;
+    public float max = 2f;
+    public float forceMin = 12f;
+    public float forceMax = 17f;
 
     public Transform[] throwingAreas;
 
@@ -25,9 +23,9 @@ public class ToThrowFruits : MonoBehaviour
         this.soundGame.Play();
     }
 
-    private IEnumerator StartThrowing()
+    public IEnumerator StartThrowing()
     {
-        yield return new WaitForSeconds(minDelay);
+        yield return new WaitForSeconds(3f);
 
         StartCoroutine(Thrower());
     }
@@ -54,6 +52,7 @@ public class ToThrowFruits : MonoBehaviour
             }
 
             GameObject fruit = Instantiate(go, t.position, t.rotation);
+            fruit.transform.rotation = UnityEngine.Random.rotation;
 
             fruit.GetComponent<Rigidbody2D>().AddForce(t.transform.up * UnityEngine.Random.Range(forceMin, forceMax), ForceMode2D.Impulse);
 
