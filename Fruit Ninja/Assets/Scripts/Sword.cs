@@ -9,7 +9,6 @@ public class Sword : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector3 lastPositionMouse;
-    private Vector3 speedMouse;
 
     private Collider2D col;
     public AudioSource soundFruit;
@@ -23,6 +22,14 @@ public class Sword : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         gameManager = FindObjectOfType<GameManager>();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        col.enabled = MouseMovement();
+
+        ConnectSowrdToMouse();
     }
 
     void Update()
@@ -43,15 +50,6 @@ public class Sword : MonoBehaviour
                 isMoving = false;
             }
         }
-    }
-
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        col.enabled = MouseMovement();
-        
-        ConnectSowrdToMouse();
     }
 
     private void ConnectSowrdToMouse()
@@ -81,13 +79,14 @@ public class Sword : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bombs bombs = collision.GetComponent<Bombs>();
+        
         if(!bombs) 
         {
             this.soundFruit.Play();
         }
         else if(bombs)
         {
-            this.soundBomb.Play();
+            this.soundBomb.Play(); 
         }
         
     }

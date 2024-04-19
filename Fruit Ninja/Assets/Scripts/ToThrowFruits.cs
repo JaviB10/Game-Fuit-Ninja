@@ -9,15 +9,15 @@ public class ToThrowFruits : MonoBehaviour
     public GameObject threwBombs;
     public float min = 0.5f;
     public float max = 2f;
-    public float forceMin = 12f;
-    public float forceMax = 17f;
+    public float forceMin = 10f;
+    public float forceMax = 15f;
 
     public Transform[] throwingAreas;
 
     public AudioSource soundGame;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(StartThrowing());
         this.soundGame.Play();
@@ -30,7 +30,7 @@ public class ToThrowFruits : MonoBehaviour
         StartCoroutine(Thrower());
     }
 
-    private IEnumerator Thrower()
+    public IEnumerator Thrower()
     {
         while (true)
         {
@@ -56,7 +56,14 @@ public class ToThrowFruits : MonoBehaviour
 
             fruit.GetComponent<Rigidbody2D>().AddForce(t.transform.up * UnityEngine.Random.Range(forceMin, forceMax), ForceMode2D.Impulse);
 
-            Destroy(fruit, 5);
+            Destroy(fruit, 3);
         }
+    }
+
+    public void RestartThrowing()
+    {
+        StopAllCoroutines(); // Stop all coroutines
+        StartCoroutine(StartThrowing());
+        soundGame.Play(); // Reset de sound game
     }
 }
