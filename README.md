@@ -38,6 +38,27 @@ A continuación, algunas capturas de pantalla del juego en acción:
 ![Pantalla de Victoria](imagen5.png)
 ![Pantalla de Game Over](imagen6.png)
 
+## Instrucciones para Descargar
+
+1. **Ir a la Sección de Lanzamientos:**
+   - Dirígete a la pestaña de "Releases" en este repositorio de GitHub.
+
+2. **Descargar el Archivo .exe:**
+   - Busca el último lanzamiento disponible y haz clic en él.
+   - Desplázate hacia abajo hasta encontrar el archivo ejecutable (.exe) asociado con el juego.
+   - Haz clic en el enlace para descargar el archivo .exe en tu computadora.
+
+3. **Instalar el Juego:**
+   - Una vez que se haya descargado el archivo .exe, ejecútalo haciendo doble clic en él.
+   - Sigue las instrucciones de instalación proporcionadas por el instalador.
+   - Al finalizar la instalación, el juego se abrirá automáticamente y estará listo para jugar.
+
+4. **Desinstalar el Juego:**
+   - Si deseas desinstalar el juego en el futuro, ve a la carpeta donde está instalado y busca un archivo .exe dedicado para desinstalar el juego.
+   - Haz doble clic en el archivo de desinstalación y sigue las instrucciones proporcionadas para completar el proceso de desinstalación.
+
+¡Ahora estás listo para disfrutar del juego! Si tienes algún problema o pregunta, no dudes en comunicarte conmigo.
+
 ##LinkedIn 
 
 Conéctate conmigo en LinkedIn para mantenernos en contacto y conocer más sobre mi trabajo como desarrollador.
