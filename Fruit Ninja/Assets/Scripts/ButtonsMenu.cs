@@ -8,10 +8,6 @@ public class ButtonsMenu : MonoBehaviour
     public GameObject sound;
     public GameObject[] images;
     private bool isActivated = false;
-    public void StartGame()
-    {
-        SceneManager.LoadScene(1);
-    }
 
     public void Exit()
     {

@@ -44,20 +44,64 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartGame();
+        InitGame();
+        print("entro a start");
     }
 
-    private void Awake()
+    void Awake()
     {
         SetBestScore();
     }
 
     private void StartGame()
     {
+        SceneManager.LoadScene(1);
+        Reset();
+    }
+
+    private void InitGame()
+    {
+        Time.timeScale = 1f;
+
         hasPlayedBestScoreSound = false;
         currentTime = gameTime;
         UpdateTimerUI();
+
+        // Reinicia la puntuación
+        score = 0;
+        textScore.text = score.ToString();
+
+        // Reinicia las vidas
+        lifes = 3;
+
+        isPaused = false;
+
+        foreach (GameObject lifeImage in imagesLife)
+        {
+            lifeImage.SetActive(false);
+        }
+
+        // Detiene cualquier instancia previa de la corutina
+        if (updateTimeCoroutine != null)
+        {
+            StopCoroutine(updateTimeCoroutine);
+        }
+
+        // Inicia la corutina del temporizador
         updateTimeCoroutine = StartCoroutine(UpdateTime());
+
+        // Oculta los paneles de gameOver y win
+        gameOverPanel.SetActive(false);
+        winPanel.SetActive(false);
+        pausePanel.SetActive(false);
+        buttonPause.SetActive(true);
+
+       
+        toThrowFruits.RestartThrowing();
+           
+        
+        print("entro a init");
+        print(lifes);
     }
 
     private IEnumerator UpdateTime()
@@ -88,6 +132,10 @@ public class GameManager : MonoBehaviour
         {   
             textTime.color = Color.red;
             soundTime.Play();         
+        }
+        else
+        {
+            textTime.color = Color.white;
         }
     }
 
@@ -132,8 +180,9 @@ public class GameManager : MonoBehaviour
 
     public void ToTouchBomb()
     {
+        print(lifes);
         lifes -= 1;
-
+        print(lifes);
         if (lifes == 2)
         {
             ShowLifeImage(0);
@@ -165,39 +214,18 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        Time.timeScale = 1;
-        score = 0;
-        textScore.text = score.ToString();
-        lifes = 3;
-
-        gameOverPanel.SetActive(false);
-        pausePanel.SetActive(false);
-        buttonPause.SetActive(true);
-        
-
         foreach (GameObject g in GameObject.FindGameObjectsWithTag("Interactive"))
         {
             Destroy(g);
         }
 
-        foreach (GameObject lifeImage in imagesLife)
-        {
-            lifeImage.SetActive(false);
-        }
-
-        if (updateTimeCoroutine != null)
-        {
-            StopCoroutine(updateTimeCoroutine);
-        }
-
-        toThrowFruits.RestartThrowing();
-        StartGame();
+        InitGame();
     }
     
     public void Pause()
     {
         isPaused = !isPaused;
-
+        print(isPaused);
         if (isPaused)
         {
             Time.timeScale = 0f;
@@ -219,8 +247,10 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        print(isPaused);
         if (!isPaused) // Si el juego no está pausado
         {
+            print("entro aca");
             // Mostrar panel de fin de juego
             gameOverPanel.SetActive(true);
             gameOverPanel.GetComponent<AudioSource>().Play();
